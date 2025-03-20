@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+templates/index.html<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -171,7 +171,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
     }
     
-    /* Sección de Información Adicional (moviéndola al final de la página) */
+    /* Sección de Información Adicional */
     .info-droning {
       background-color: #fff;
       margin: 20px;
@@ -224,7 +224,7 @@
       border-radius: 50%;
     }
     
-    /* Nuevo Apartado de Servicios con Diseño Moderno y Dinámico */
+    /* Apartado de Servicios */
     .servicios {
       background: linear-gradient(135deg, #f0f4f8, #ffffff);
       margin: 20px;
@@ -268,7 +268,7 @@
       margin-bottom: 10px;
     }
     
-    /* Modal para Video (usando <video> para videos locales) */
+    /* Modal para video */
     .modal {
       display: none;
       position: fixed;
@@ -289,10 +289,9 @@
       max-width: 800px;
       position: relative;
     }
-    .modal-content video {
+    .modal-content iframe {
       width: 100%;
-      height: auto;
-      max-height: 450px;
+      height: 450px;
     }
     .close {
       position: absolute;
@@ -312,7 +311,7 @@
       margin-top: 20px;
     }
     
-    /* Diseño Moderno y Dinámico para todos los botones interactuables */
+    /* Botones interactuables */
     button {
       background: linear-gradient(135deg, #007bff, #0056b3) !important;
       border: none !important;
@@ -327,7 +326,6 @@
       transform: translateY(-3px) !important;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
     }
-    /* Aplicar el mismo diseño a los botones de inicio (enlaces) */
     a[href="login.html"] {
       background: linear-gradient(135deg, #00548f, #003a68) !important;
       border: none !important;
@@ -343,6 +341,46 @@
       transform: translateY(-3px) !important;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
     }
+    
+    /* ------------------ Estilos para el Registro (código agregado) ------------------ */
+    .register-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+      margin: 20px auto;
+    }
+    .register-container h2 { margin-bottom: 20px; text-align: center; }
+    .register-container form { display: flex; flex-direction: column; gap: 15px; }
+    .register-container input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .register-container button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+    }
+    .register-container button:hover { background-color: #0056b3; }
+    .register-container a {
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+      color: #007bff;
+    }
+    .register-container ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+      color: red;
+    }
+    /* ------------------------------------------------------------------------------- */
   </style>
 </head>
 <body>
@@ -352,10 +390,10 @@
       <h1>Cielo Digital</h1>
       <nav>
         <ul>
-          <!-- Submenú bajo "Inicio" -->
           <li>
             <a href="#">Inicio</a>
             <ul class="submenu">
+              <li><a href="#">Asesoría de drones</a></li>
               <li><a href="#">Drones para Inmobiliarias</a></li>
               <li><a href="#">Seguimiento de obras con drones</a></li>
               <li><a href="#">Topografía con drones</a></li>
@@ -364,7 +402,6 @@
               <li><a href="#">Termografía Drones</a></li>
             </ul>
           </li>
-          <!-- Submenú bajo "Catálogo" (modelos DJI) -->
           <li>
             <a href="#">Catálogo</a>
             <ul class="submenu">
@@ -376,22 +413,20 @@
             </ul>
           </li>
           <li><a href="#conocenos">Conocenos</a></li>
-          <li><a href="#">Reservas</a></li>
-          <li><a href="login.html">Iniciar Sesión</a></li>
+          <li><a href="{{ url_for('reservas.reservas') }}">Reservas</a></li>
+          <li><a href="{{ url_for('login.login') }}">Iniciar Sesión</a></li>
         </ul>
       </nav>
     </div>
-    <!-- Se muestra el nombre del usuario en la parte superior derecha -->
     <div id="userInfo"></div>
   </header>
   
   <!-- Sección del Banner con Carrusel de Fondo -->
   <section class="banner">
     <div class="carousel">
-      <!-- Se agregan varias imágenes para el carrusel -->
-      <img src="imagenes carrusel/OIP.jpg" alt="Imagen 1" class="active">
-      <img src="imagenes carrusel/drone-montagne.jpg" alt="Imagen 2">
-      <img src="imagenes carrusel/dron-paisaje-mar-1620x800.jpg" alt="Imagen 3">
+      <img src="/static/multimedia/imagenes carrusel/OIP.jpg" alt="Imagen 1" class="active">
+      <img src="/static/multimedia/imagenes carrusel/drone-montagne.jpg" alt="Imagen 2">
+      <img src="/static/multimedia/imagenes carrusel/dron-paisaje-mar-1620x800.jpg" alt="Imagen 3">
     </div>
     <div class="banner-content">
       <h2>Descubre el dron perfecto para cada servicio</h2>
@@ -401,39 +436,18 @@
   
   <!-- Sección de Drones -->
   <section class="drones">
-    <div class="dron" id="drone-1">
-      <img src="imagenes drones/DJI-Mavic-3-featured4.jpg" alt="DJI Mavic 3">
-      <h3>DJI Mavic 3</h3>
-      <p>Descripción breve del dron.</p>
-      <button onclick="reservarDrone(1)">Reservar</button>
-    </div>
-    <div class="dron" id="drone-2">
-      <img src="imagenes drones/air 2.jpg" alt="DJI AIR 2">
-      <h3>DJI AIR 2</h3>
-      <p>Descripción breve del dron.</p>
-      <button onclick="reservarDrone(2)">Reservar</button>
-    </div>
-    <div class="dron" id="drone-3">
-      <img src="imagenes drones/DJI-Avata-FPV-Drone-2.jpg" alt="DJI Avatar 2">
-      <h3>DJI Avatar 2</h3>
-      <p>Descripción breve del dron.</p>
-      <button onclick="reservarDrone(3)">Reservar</button>
-    </div>
-    <div class="dron" id="drone-4">
-      <img src="imagenes drones/mini 2.jpg" alt="DJI Mini 2">
-      <h3>DJI Mini 2</h3>
-      <p>Descripción breve del dron.</p>
-      <button onclick="reservarDrone(4)">Reservar</button>
-    </div>
-    <div class="dron" id="drone-5">
-      <img src="imagenes drones/DJI-inspire-3-landscape1.jpg" alt="DJI Inspire 3">
-      <h3>DJI Inspire 3</h3>
-      <p>Descripción breve del dron.</p>
-      <button onclick="reservarDrone(5)">Reservar</button>
-    </div>
+    <h1>Lista de Drones</h1>
+    {% for dron in drones %}
+      <div class="dron" id="drone-{{ dron.id }}">
+        <img src="{{ dron.imagen_url }}" alt="{{ dron.modelo }}">
+        <h3>{{ dron.modelo }}</h3>
+        <p>{{ dron.descripcion }}</p>
+        <button onclick="reservarDrone({{ dron.id }})">Reservar</button>
+      </div>
+    {% endfor %}
   </section>
   
-  <!-- Sección de Información Adicional (moviéndola al final de la página) -->
+  <!-- Sección de Información Adicional -->
   <section class="info-droning" id="conocenos">
     <h2>"Droning, soluciones adaptadas"</h2>
     <p>
@@ -445,7 +459,7 @@
     <h2>Objetivos</h2>
     <div class="objetivos">
       <div class="objetivo">
-        <h3>Eficacia <span class="logo"><img src="logos/Eficacia.png" alt="Logo Eficacia"></span></h3>
+        <h3>Eficacia <span class="logo"><img src="/static/multimedia/logos/Eficacia.png" alt="Logo Eficacia"></span></h3>
         <p>
           Prevenir y aportar soluciones innovadoras a posibles incidencias en todas las fases 
           de los diferentes procesos dentro del entorno agrícola, civil, minero, energético 
@@ -453,7 +467,7 @@
         </p>
       </div>
       <div class="objetivo">
-        <h3>Calidad <span class="logo"><img src="logos/Calidad.png" alt="Logo Calidad"></span></h3>
+        <h3>Calidad <span class="logo"><img src="/static/multimedia/logos/Calidad.png" alt="Logo Calidad"></span></h3>
         <p>
           Mejora continua en técnicas de análisis, así como nuestra actitud de trabajo 
           orientada a satisfacer las necesidades del cliente. Para nosotros, el mejor referente 
@@ -461,7 +475,7 @@
         </p>
       </div>
       <div class="objetivo">
-        <h3>I+D+i <span class="logo"><img src="logos/I+D+i.png" alt="Logo I+D+i"></span></h3>
+        <h3>I+D+i <span class="logo"><img src="/static/multimedia/logos/I+D+i.png" alt="Logo I+D+i"></span></h3>
         <p>
           Inversión constante en I+D+i que nos permita crecer de la mano de todos los avances 
           que se den en nuestros servicios.
@@ -470,48 +484,51 @@
     </div>
   </section>
   
-  <!-- Nuevo Apartado de Servicios con Diseño Moderno y Dinámico -->
+  <!-- Apartado de Servicios -->
   <section class="servicios">
     <h2>Servicios</h2>
-    <div class="servicio" onclick="abrirModal('videos/inmobiliarias.mp4')">
-      <img class="servicio-icon" src="icons/inmobiliarias.png" alt="Inmobiliarias Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example1')">
+      <img class="servicio-icon" src="/static/multimedia/icons/asesoria.png" alt="Asesoría Icon">
+      <h3>Asesoría de drones</h3>
+      <p>Ofrecemos orientación profesional en la selección, uso y mantenimiento de drones para diversas aplicaciones.</p>
+    </div>
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example2')">
+      <img class="servicio-icon" src="/static/multimedia/icons/inmobiliarias.png" alt="Inmobiliarias Icon">
       <h3>Drones para Inmobiliarias</h3>
       <p>Nuestras soluciones especializadas para el sector inmobiliario incluyen imágenes aéreas de alta calidad para mostrar propiedades y terrenos.</p>
     </div>
-    <div class="servicio" onclick="abrirModal('videos/seguimiento.mp4')">
-      <img class="servicio-icon" src="icons/seguimiento.png" alt="Seguimiento Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example3')">
+      <img class="servicio-icon" src="/static/multimedia/icons/seguimiento.png" alt="Seguimiento Icon">
       <h3>Seguimiento de obras con drones</h3>
       <p>Utilizamos drones para monitorear el progreso de obras y proyectos de construcción, proporcionando informes visuales en tiempo real.</p>
     </div>
-    <div class="servicio" onclick="abrirModal('videos/topografia.mp4')">
-      <img class="servicio-icon" src="icons/topografia.png" alt="Topografía Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example4')">
+      <img class="servicio-icon" src="/static/multimedia/icons/topografia.png" alt="Topografía Icon">
       <h3>Topografía con drones</h3>
       <p>Realizamos levantamientos topográficos aéreos para obtener datos precisos del terreno, facilitando la planificación y análisis de proyectos.</p>
     </div>
-    <div class="servicio" onclick="abrirModal('videos/fotogrametria.mp4')">
-      <img class="servicio-icon" src="icons/fotogrametria.png" alt="Fotogrametría Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example5')">
+      <img class="servicio-icon" src="/static/multimedia/icons/fotogrametria.png" alt="Fotogrametría Icon">
       <h3>Fotogrametría con Dron</h3>
       <p>Empleamos la fotogrametría aérea para generar mapas y modelos 3D detallados, útiles en diversas aplicaciones.</p>
     </div>
-    <div class="servicio" onclick="abrirModal('videos/inspeccion.mp4')">
-      <img class="servicio-icon" src="icons/inspeccion.png" alt="Inspección Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example6')">
+      <img class="servicio-icon" src="/static/multimedia/icons/inspeccion.png" alt="Inspección Icon">
       <h3>Inspección con Drones</h3>
       <p>Nuestros drones permiten realizar inspecciones seguras y detalladas de infraestructuras y edificaciones, accediendo a zonas difíciles.</p>
     </div>
-    <div class="servicio" onclick="abrirModal('videos/termografia.mp4')">
-      <img class="servicio-icon" src="icons/termografia.png" alt="Termografía Icon">
+    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example7')">
+      <img class="servicio-icon" src="/static/multimedia/icons/termografia.png" alt="Termografía Icon">
       <h3>Termografía Drones</h3>
       <p>Utilizamos tecnología termográfica para detectar diferencias de temperatura en edificaciones e instalaciones, facilitando diagnósticos precisos.</p>
     </div>
   </section>
   
-  <!-- Modal para Video (usando <video> para videos locales) -->
+  <!-- Modal para Video -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="cerrarModal()">&times;</span>
-      <video id="modalVideo" controls>
-        Tu navegador no soporta el elemento de video.
-      </video>
+      <iframe id="modalVideo" src="" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
   
@@ -519,6 +536,27 @@
   <footer>
     <p>&copy; 2025 Cielo Digital. Todos los derechos reservados.</p>
   </footer>
+  
+  <!-- Registro: Código agregado sin modificar el resto -->
+  <div class="register-container">
+    <h2>Registro</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('login.register') }}">
+      <input type="text" name="username" placeholder="Nombre de usuario" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <a href="{{ url_for('login.login') }}">Volver al login</a>
+  </div>
   
   <script>
     // Carrusel de fondo
@@ -535,22 +573,28 @@
     // Función para simular la reserva de un dron
     function reservarDrone(droneId) {
       if (!usuarioLogueado()) {
-        alert("Debes iniciar sesión para reservar un dron.");
-        window.location.href = "login.html";
-        return;
-      }
-      setTimeout(() => {
-        const exito = true;
-        if (exito) {
-          alert("¡Reserva exitosa!");
-          const boton = document.querySelector(`#drone-${droneId} button`);
-          boton.disabled = true;
-          boton.innerText = "Reservado";
-        } else {
-          alert("El dron ya ha sido reservado.");
-        }
-      }, 500);
+      alert("Debes iniciar sesión para reservar un dron.");
+     window.location.href = "{{ url_for('login.login') }}";
+      return;
     }
+      fetch("{{ url_for('reservas.reservar') }}", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ drone_id: droneId })
+     })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert("¡Reserva exitosa!");
+        const boton = document.querySelector(`#drone-${droneId} button`);
+        boton.disabled = true;
+        boton.innerText = "Reservado";
+      } else {
+        alert(data.error || "El dron ya ha sido reservado.");
+      }
+    });
+  }
+
     
     function usuarioLogueado() {
       return sessionStorage.getItem("usuario") !== null;
@@ -566,21 +610,30 @@
       }
     });
     
-    // Funciones para abrir y cerrar el modal con video local
+    // Funciones para abrir y cerrar el modal
     function abrirModal(videoURL) {
-      var videoElement = document.getElementById("modalVideo");
-      videoElement.src = videoURL;
+      document.getElementById("modalVideo").src = videoURL;
       document.getElementById("modal").style.display = "block";
-      videoElement.play();
     }
     
     function cerrarModal() {
-      var videoElement = document.getElementById("modalVideo");
-      videoElement.pause();
-      videoElement.currentTime = 0;
       document.getElementById("modal").style.display = "none";
-      videoElement.src = "";
+      document.getElementById("modalVideo").src = "";
     }
   </script>
+  
+  {% if session.username %}
+  <script>
+    // Si Flask tiene un usuario en sesión, lo guardamos en sessionStorage
+    sessionStorage.setItem("usuario", JSON.stringify({ nombre: "{{ session.username }}" }));
+  </script>
+  {% else %}
+  <script>
+    // Si no hay usuario en sesión, eliminamos cualquier valor previo
+    sessionStorage.removeItem("usuario");
+  </script>
+  {% endif %}
+  
 </body>
+
 </html>

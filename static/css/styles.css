@@ -1,0 +1,135 @@
+/* Estilos para la sección de comentarios */
+.comentarios-seccion {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.comentarios-seccion h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Estilos para el formulario de comentarios */
+.comentario-form-container {
+    margin-bottom: 30px;
+}
+
+#comentarioForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#comentarioForm textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.btn-comentario {
+    background: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-comentario:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Estilos para la lista de comentarios */
+.comentarios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comentario-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.usuario-nombre {
+    font-weight: 600;
+    color: #007bff;
+}
+
+.comentario-contenido {
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Estilos para el botón de eliminar */
+.btn-eliminar {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    background: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .comentarios-seccion {
+        padding: 15px;
+    }
+    
+    .btn-comentario {
+        width: 100%;
+    }
+}
+
+.card {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.content-preview, .content-full {
+    margin-bottom: 15px;
+}
+
+.leer-mas {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.leer-mas:hover {
+    background-color: #0056b3;
+}

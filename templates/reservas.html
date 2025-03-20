@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Reservas - Cielo Digital</title>
+  <style>
+    /* Estilos base */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f9fc;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* Estilos modernos para el encabezado */
+    header {
+      background: linear-gradient(90deg, #0033a0, #0056b3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    header.scrolled {
+      padding: 10px 0;
+      background: rgba(0, 51, 160, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo a {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo a:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Menú de navegación moderno */
+    .main-menu {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .main-menu ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .main-menu li {
+      position: relative;
+      margin: 0 5px;
+    }
+    
+    .main-menu li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .main-menu li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: -1;
+      transform: skewX(-15deg);
+    }
+    
+    .main-menu li a:hover::before {
+      transform: translateX(100%) skewX(-15deg);
+    }
+    
+    .main-menu li a:hover {
+      color: white;
+      background: rgba(255,255,255,0.1);
+    }
+    
+    /* Contenedor de Reservas Moderno */
+    .reservas-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .reservas-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+    }
+    
+    .reservas-container h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0056b3;
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .reservas-container h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      border-radius: 2px;
+    }
+
+    /* Estilos de tarjetas de drones - Usando el estilo de servicios del index */
+    .drones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .dron {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    
+    .dron:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .dron-header {
+      height: 180px;
+      background: linear-gradient(135deg, #0056b3, #00a0e9);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dron-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .dron:hover .dron-img {
+      transform: scale(1.1);
+    }
+    
+    .dron-body {
+      padding: 20px;
+    }
+    
+    .dron h3 {
+      color: #0056b3;
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    
+    .dron p {
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .dron button {
+      background: linear-gradient(90deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,123,255,0.2);
+      width: 100%;
+      text-align: center;
+    }
+    
+    .dron button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+      background: linear-gradient(90deg, #0056b3, #003d82);
+    }
+    
+    .dron button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+    
+    /* Mensaje cuando no hay reservas */
+    .no-reservas {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.02);
+      border-radius: 10px;
+      margin: 20px 0;
+      color: #6c757d;
+      font-style: italic;
+    }
+    
+    /* Enlace de regreso moderno */
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: 600;
+      position: relative;
+      padding: 5px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007bff;
+      transition: width 0.3s ease;
+    }
+    
+    .back-link:hover {
+      color: #0056b3;
+    }
+    
+    .back-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Animaciones para las tarjetas */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .dron {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+    
+    .dron:nth-child(1) { animation-delay: 0.1s; }
+    .dron:nth-child(2) { animation-delay: 0.2s; }
+    .dron:nth-child(3) { animation-delay: 0.3s; }
+    .dron:nth-child(4) { animation-delay: 0.4s; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .drones-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .reservas-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="logo">
+        <a href="{{ url_for('main.index') }}">Cielo Digital</a>
+      </div>
+      
+      <nav class="main-menu">
+        <ul>
+          <li><a href="{{ url_for('main.index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('main.index') }}#catalogo">Catálogo</a></li>
+          <li><a href="{{ url_for('main.index') }}#conocenos">Conocenos</a></li>
+          <li><a href="{{ url_for('reservas.reservas') }}">Reservas</a></li>
+          {% if session.username %}
+            <li><a href="{{ url_for('login.logout') }}">Cerrar Sesión</a></li>
+          {% else %}
+            <li><a href="{{ url_for('login.login') }}">Iniciar Sesión</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      
+      {% if session.username %}
+        <div id="userInfo">
+          <span>Bienvenido, {{ session.username }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="reservas-container">
+    <h1>Mis Reservas</h1>
+
+    {% if drones %}
+      <div class="drones-grid">
+        {% for dron in drones %}
+          <div class="dron" id="drone-{{ dron.id }}">
+            <div class="dron-header">
+              <img src="{{ dron.imagen_url }}" alt="{{ dron.modelo }}" class="dron-img">
+            </div>
+            <div class="dron-body">
+              <h3>{{ dron.modelo }}</h3>
+              <p>{{ dron.descripcion }}</p>
+              <button onclick="eliminarReserva({{ dron.id }})">Eliminar Reserva</button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-reservas">
+        <p>No tienes reservas actualmente. Explora nuestro catálogo para encontrar el dron perfecto para ti.</p>
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('main.index') }}" class="back-link">← Volver a la página principal</a>
+  </div>
+
+  <script>
+    // Script para efecto de scroll en el encabezado
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('mainHeader');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+    
+    // Función para eliminar reserva con animación
+    function eliminarReserva(droneId) {
+      const droneElement = document.getElementById(`drone-${droneId}`);
+      
+      // Primero aplicamos animación de salida
+      droneElement.style.transition = "all 0.5s ease";
+      droneElement.style.opacity = "0";
+      droneElement.style.transform = "scale(0.8) translateY(-20px)";
+      
+      setTimeout(() => {
+        // Enviamos petición para eliminar después de comenzar la animación
+        fetch("{{ url_for('reservas.eliminar_reserva') }}", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ drone_id: droneId })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Si fue exitoso, terminamos de eliminar el elemento
+            setTimeout(() => {
+              droneElement.remove();
+              
+              // Si no quedan más reservas, mostramos mensaje
+              const reservasRestantes = document.querySelectorAll('.dron').length;
+              if (reservasRestantes === 0) {
+                const dronesGrid = document.querySelector('.drones-grid');
+                dronesGrid.innerHTML = `
+                  <div class="no-reservas">
+                    <p>No tienes reservas actualmente. Explora nuestro catálogo para encontrar el dron perfecto para ti.</p>
+                  </div>
+                `;
+              }
+            }, 300);
+          } else {
+            // Si hubo error, revertimos la animación
+            droneElement.style.opacity = "1";
+            droneElement.style.transform = "scale(1) translateY(0)";
+            alert(data.error || "Error al eliminar la reserva.");
+          }
+        });
+      }, 200);
+    }
+  </script>
+</body>
+</html>

@@ -12,6 +12,9 @@ def login():
         password = request.form.get('password')
         user = Usuario.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
+            # Se añaden los datos del usuario a la sesión
+            session['user_id'] = user.id
+            session['rol'] = user.rol
             session['user_type'] = 'usuario'
             session['username'] = user.username
             flash(f'Bienvenido, {user.username}')

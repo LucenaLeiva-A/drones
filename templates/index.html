@@ -18,254 +18,747 @@
       color: #333;
     }
     
-    /* Header con display flex para distribuir elementos */
+    /* Estilos modernos para el encabezado */
     header {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
-      padding: 20px 40px;
-      color: #fff;
-      position: relative;
-      z-index: 10;
+      background: linear-gradient(90deg, #0033a0, #0056b3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    header.scrolled {
+      padding: 10px 0;
+      background: rgba(0, 51, 160, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: background 0.3s ease;
+      padding: 15px 30px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-    
-    /* Información del usuario en la parte superior derecha */
-    #userInfo {
-      font-size: 1rem;
-      text-align: right;
-    }
-    
-    /* Menú principal */
-    nav ul {
-      list-style: none;
+    .logo {
       display: flex;
-      gap: 20px;
-      margin-top: 10px;
+      align-items: center;
     }
     
-    nav ul li {
-      position: relative;
-    }
-    
-    nav ul li a {
-      color: #fff;
+    .logo a {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: white;
       text-decoration: none;
-      padding: 8px 12px;
-      font-size: 1.1rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    
-    nav ul li a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    /* Submenú con efecto fade */
-    nav ul li ul.submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #fff;
-      padding: 10px;
-      list-style: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-radius: 5px;
-      min-width: 200px;
-      z-index: 11;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    nav ul li:hover > ul.submenu {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    nav ul li ul.submenu li a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      padding: 5px 10px;
-    }
-    nav ul li ul.submenu li a:hover {
-      background-color: #f5f5f5;
-    }
-    
-    /* Banner con carrusel de fondo */
-    .banner {
+      letter-spacing: 0.5px;
       position: relative;
       overflow: hidden;
-      height: 400px;
+      display: inline-block;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .carousel {
+    
+    .logo a:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffffff;
+      transition: width 0.4s ease;
+    }
+    
+    .logo a:hover::after {
+      width: 100%;
+    }
+    
+    /* Menú de navegación moderno */
+    .main-menu {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .main-menu ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .main-menu li {
+      position: relative;
+      margin: 0 5px;
+    }
+    
+    .main-menu li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .main-menu li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: -1;
+      transform: skewX(-15deg);
+    }
+    
+    .main-menu li a:hover::before {
+      transform: translateX(100%) skewX(-15deg);
+    }
+    
+    .main-menu li a:hover {
+      color: white;
+      background: rgba(255,255,255,0.1);
+    }
+    
+    /* Usuario info moderno */
+    #userInfo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: 500;
+      border-radius: 30px;
+      padding: 5px 15px;
+      background: rgba(255,255,255,0.1);
+      margin-left: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    #userInfo:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    /* Banner modernizado */
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 650px;
+      overflow: hidden;
+    }
+    
+    .video-banner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .video-banner video {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      object-fit: cover;
     }
-    .carousel img {
+    
+    .banner-content {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: opacity 1s ease-in-out;
-      opacity: 0;
-    }
-    .carousel img.active {
-      opacity: 1;
-    }
-    .banner-content {
-      position: relative;
-      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
       text-align: center;
-      padding: 80px 20px;
-      color: #fff;
+      z-index: 2;
+    }
+    
+    .banner-content h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.5s;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .banner-content p {
+      font-size: 1.4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.8s;
+      max-width: 600px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    
+    .banner-btn {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      margin-top: 20px;
+    }
+    
+    .banner-btn:hover {
+      background: #0056b3;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    }
+    
+    .banner-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+    }
+    
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Menú móvil */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+    }
+    
+    .menu-toggle span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .header-container {
+        padding: 15px 20px;
+      }
+      
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .main-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 300px;
+        background: #0033a0;
+        flex-direction: column;
+        padding-top: 80px;
+        transition: right 0.3s ease;
+        z-index: 100;
+      }
+      
+      .main-menu.active {
+        right: 0;
+      }
+      
+      .main-menu ul {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .main-menu li {
+        margin: 5px 0;
+        width: 100%;
+      }
+      
+      .main-menu li a {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+      }
+      
+      .banner-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .banner-content p {
+        font-size: 1.1rem;
+      }
     }
     
     /* Sección de Drones */
     .drones {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
-      justify-content: center;
-    }
-    .dron {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .dron img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    .dron button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: linear-gradient(135deg, #007bff, #0056b3) !important;
-      color: #fff !important;
-      border-radius: 4px !important;
-      cursor: pointer !important;
-      transition: transform 0.2s, box-shadow 0.2s !important;
-      text-decoration: none !important;
-    }
-    .dron button:hover {
-      transform: translateY(-3px) !important;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+      padding: 40px 0;
+      background-color: #f9f9f9;
     }
     
-    /* Sección de Información Adicional */
-    .info-droning {
-      background-color: #fff;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .info-droning h2 {
-      margin-bottom: 10px;
-      font-size: 1.5rem;
+    .drones h2 {
+      text-align: center;
+      margin-bottom: 30px;
       color: #333;
+      font-size: 2rem;
     }
-    .info-droning h2:first-of-type {
+    
+    /* Utilizamos la misma distribución en grid que los servicios */
+    .drones .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 0 20px;
+    }
+    
+    /* Aplicamos los mismos estilos de tarjeta */
+    .drones .servicio {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .drones .servicio:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    
+    /* Estilos específicos para las tarjetas de drones */
+    .drones .servicio-header {
+      height: 180px; /* Aumentamos la altura para que quepa mejor la imagen */
+      padding: 0; /* Eliminamos el padding */
+      overflow: hidden; /* Para manejar imágenes de cualquier tamaño */
+      border-radius: 10px 10px 0 0; /* Redondeamos solo las esquinas superiores */
+      position: relative;
+    }
+    
+    /* Cambiamos el aspecto del icono en las tarjetas de drones */
+    .drones .servicio-icon {
+      width: 100% !important; /* Que ocupe todo el ancho */
+      height: 100% !important; /* Que ocupe toda la altura */
+      margin: 0 !important; /* Eliminamos el margen */
+      border-radius: 0 !important; /* Ya no es circular */
+      border: none !important; /* Eliminamos el borde punteado */
+      padding: 0 !important; /* Sin padding */
+      margin-top: 0 !important; /* Sin margen superior */
+      position: absolute; /* Posicionamiento absoluto */
+      top: 0;
+      left: 0;
+      background: transparent; /* Fondo transparente */
+    }
+    
+    /* Las imágenes ocupan todo el espacio de la cabecera */
+    .drones .servicio-icon img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important; /* La imagen cubre todo el espacio */
+      border-radius: 10px 10px 0 0 !important; /* Redondeamos solo las esquinas superiores */
+    }
+    
+    /* Eliminamos el pseudo-elemento decorativo para las tarjetas de drones */
+    .drones .servicio-header::after {
+      display: none;
+    }
+    
+    /* Ajuste para que el cuerpo de la tarjeta se vea bien */
+    .drones .servicio-body {
+      padding: 20px;
+    }
+    
+    /* Sección de Información Adicional modernizada */
+    .info-droning {
+      padding: 60px 20px;
+      background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+      border-radius: 15px;
+      margin: 40px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    .info-droning h2 {
       text-align: center;
+      margin-bottom: 25px;
+      color: #0056b3;
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
     }
-    .info-droning h2:nth-of-type(2) {
-      text-align: center;
+    
+    .info-droning h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      border-radius: 2px;
     }
+    
     .info-droning p {
-      margin-bottom: 15px;
-      line-height: 1.5;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #495057;
     }
+    
+    /* Objetivos con diseño moderno */
     .objetivos {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
     }
+    
     .objetivo {
-      flex: 1 1 200px;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      flex: 1;
+      min-width: 300px;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-top: 5px solid transparent;
+      z-index: 1;
     }
+    
+    .objetivo:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 15px 35px rgba(0,123,255,0.1);
+      border-top: 5px solid #007bff;
+    }
+    
+    .objetivo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(180deg, rgba(0,123,255,0.03) 0%, transparent 100%);
+      transition: height 0.3s ease;
+      z-index: -1;
+    }
+    
+    .objetivo:hover::before {
+      height: 100%;
+    }
+    
     .objetivo h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: #007bff;
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+      position: relative;
+    }
+    
+    .objetivo .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #f8f9fa;
+      padding: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .objetivo h3 .logo {
+    
+    .objetivo:hover .logo {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .objetivo .logo img {
+      max-width: 100%;
+      max-height: 100%;
+      transition: transform 0.3s ease;
+    }
+    
+    .objetivo:hover .logo img {
+      transform: scale(1.1);
+    }
+    
+    .objetivo p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #666;
+      text-align: left;
+      transition: color 0.3s ease;
+    }
+    
+    .objetivo:hover p {
+      color: #333;
+    }
+    
+    /* Botón para ampliar información (opcional) */
+    .objetivo-button {
       display: inline-block;
-      width: 0.8em;
-      height: 0.8em;
-      margin-right: 5px;
-      vertical-align: middle;
-      background-color: #ccc;
-      border-radius: 50%;
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: transparent;
+      color: #007bff;
+      border: 1px solid #007bff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .objetivo-button:hover {
+      background: #007bff;
+      color: white;
+    }
+    
+    /* Media queries para responsividad */
+    @media (max-width: 768px) {
+      .objetivos {
+        flex-direction: column;
+      }
+      
+      .objetivo {
+        width: 100%;
+      }
     }
     
     /* Apartado de Servicios */
     .servicios {
-      background: linear-gradient(135deg, #f0f4f8, #ffffff);
-      margin: 20px;
-      padding: 40px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      padding: 60px 30px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     }
     .servicios h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 2rem;
-      color: #333;
+      margin-bottom: 50px;
+      color: #0d47a1;
+      position: relative;
+      padding-bottom: 20px;
+    }
+    .servicios h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #64b5f6);
+      border-radius: 4px;
+    }
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .servicio {
       background-color: #fff;
-      margin-bottom: 15px;
-      padding: 20px;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: center;
-      cursor: pointer;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
     }
     .servicio:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transform: translateY(-12px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .servicio-header {
+      background: linear-gradient(135deg, #0056b3, #00a0e9);
+      height: 150px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .servicio-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: linear-gradient(to bottom right, transparent 49%, #fff 50%);
+    }
+    .servicio-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 4px dashed rgba(255,255,255,0.5);
+      padding: 5px;
+      position: relative;
+      z-index: 2;
+    }
+    .servicio-icon img {
+      width: 95%;
+      height: 95%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .servicio-body {
+      padding: 30px 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
     .servicio h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      color: #007bff;
+      margin: 15px 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0d47a1;
+      text-align: center;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .servicio h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, #0d47a1, #64b5f6);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .servicio:hover h3::after {
+      width: 60px;
     }
     .servicio p {
-      font-size: 1rem;
-      line-height: 1.5;
+      margin-bottom: 20px;
+      line-height: 1.6;
       color: #555;
+      text-align: center;
+      flex-grow: 1;
     }
-    .servicio img.servicio-icon {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
+    .servicio-footer {
+      margin-top: auto;
+      text-align: center;
+      padding-top: 15px;
+    }
+    .servicio-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(25, 118, 210, 0.3);
+    }
+    .servicio-btn:hover {
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
+      box-shadow: 0 6px 15px rgba(25, 118, 210, 0.4);
+      transform: translateY(-3px);
+    }
+    /* Diferentes colores para cada tarjeta */
+    .servicio:nth-child(1) .servicio-header {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+    }
+    .servicio:nth-child(2) .servicio-header {
+      background: linear-gradient(135deg, #0277bd, #039be5);
+    }
+    .servicio:nth-child(3) .servicio-header {
+      background: linear-gradient(135deg, #01579b, #0288d1);
+    }
+    .servicio:nth-child(4) .servicio-header {
+      background: linear-gradient(135deg, #006064, #00acc1);
+    }
+    .servicio:nth-child(5) .servicio-header {
+      background: linear-gradient(135deg, #00695c, #00897b);
+    }
+    .servicio:nth-child(6) .servicio-header {
+      background: linear-gradient(135deg, #304ffe, #536dfe);
+    }
+    .servicio:nth-child(7) .servicio-header {
+      background: linear-gradient(135deg, #1a237e, #303f9f);
+    }
+    /* Específicamente para el logo de asesoría de drones */
+    .servicio:nth-child(1) .servicio-icon img {
+      width: 120%;
+      max-width: 120%;
+      margin: -10% 0;
+      transform: scale(1.3);
+      transform-origin: center;
+    }
+    .servicio:nth-child(1) .servicio-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .servicios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      
+      .servicios {
+        padding: 40px 15px;
+      }
+      
+      .servicios h2 {
+        font-size: 2rem;
+        margin-bottom: 35px;
+      }
     }
     
     /* Modal para video */
@@ -341,73 +834,419 @@
       transform: translateY(-3px) !important;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
     }
+    
+    /* ------------------ Estilos para el Registro (código agregado) ------------------ */
+    .register-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 300px;
+      margin: 20px auto;
+    }
+    .register-container h2 { margin-bottom: 20px; text-align: center; }
+    .register-container form { display: flex; flex-direction: column; gap: 15px; }
+    .register-container input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .register-container button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+    }
+    .register-container button:hover { background-color: #0056b3; }
+    .register-container a {
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+      color: #007bff;
+    }
+    .register-container ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 10px;
+      color: red;
+    }
+    /* ------------------------------------------------------------------------------- */
+    
+    /* Sección de Comentarios Modernizada */
+    .comentarios {
+      padding: 50px 20px;
+      background: linear-gradient(120deg, #ffffff, #f8f9fa);
+      border-radius: 15px;
+      margin: 40px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .comentarios::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+    }
+    
+    .comentarios-titulo {
+      text-align: center;
+      margin-bottom: 35px;
+      color: #333;
+      font-size: 2.2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .comentarios-titulo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      border-radius: 2px;
+    }
+    
+    .comentarios-lista {
+      max-width: 900px;
+      margin: 0 auto 30px;
+    }
+    
+    .comentario-item {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border-left: 4px solid #007bff;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .comentario-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .comentario-item::before {
+      content: '"';
+      position: absolute;
+      top: -15px;
+      right: 15px;
+      font-size: 80px;
+      color: rgba(0,123,255,0.1);
+      font-family: serif;
+    }
+    
+    .comentario-texto {
+      margin: 0;
+      line-height: 1.6;
+      color: #555;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .comentario-usuario {
+      color: #007bff;
+      font-weight: 600;
+      position: relative;
+      margin-right: 15px;
+      transition: color 0.3s ease;
+    }
+    
+    .comentario-usuario:hover {
+      color: #0056b3;
+    }
+    
+    .comentario-sin-comentarios {
+      text-align: center;
+      color: #6c757d;
+      font-style: italic;
+      padding: 20px;
+      background: rgba(0,0,0,0.02);
+      border-radius: 8px;
+    }
+    
+    /* Formulario de comentarios moderno */
+    .comentario-form {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .comentario-form:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,123,255,0.1);
+    }
+    
+    .comentario-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 1rem;
+      color: #495057;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .comentario-textarea:focus {
+      outline: none;
+      border-color: #80bdff;
+      box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+    }
+    
+    .comentario-textarea::placeholder {
+      color: #adb5bd;
+    }
+    
+    .comentario-boton {
+      display: block;
+      margin-left: auto;
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+    }
+    
+    .comentario-boton:hover {
+      background: linear-gradient(135deg, #0069d9, #004494);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,123,255,0.4);
+    }
+    
+    .comentario-boton:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0,123,255,0.3);
+    }
+    
+    .comentario-invitar-login {
+      text-align: center;
+      margin: 30px 0 10px;
+      font-size: 1.1rem;
+      color: #6c757d;
+    }
+    
+    .comentario-link-login {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    
+    .comentario-link-login::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007bff;
+      transition: width 0.3s ease;
+    }
+    
+    .comentario-link-login:hover {
+      color: #0056b3;
+    }
+    
+    .comentario-link-login:hover::after {
+      width: 100%;
+    }
+    
+    /* Animaciones para los comentarios */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .comentario-item {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+    
+    .comentario-item:nth-child(1) { animation-delay: 0.1s; }
+    .comentario-item:nth-child(2) { animation-delay: 0.2s; }
+    .comentario-item:nth-child(3) { animation-delay: 0.3s; }
+    .comentario-item:nth-child(4) { animation-delay: 0.4s; }
+    .comentario-item:nth-child(5) { animation-delay: 0.5s; }
+    
+    /* Estilos para mostrar las tarjetas centradas en una línea */
+    .drones {
+      text-align: center;
+      padding: 40px 0;
+    }
+    
+    .servicios-grid.single-line {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 90%;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #007bff #f0f0f0;
+    }
+
+    .servicios-grid.single-line::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .servicios-grid.single-line::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .servicios-grid.single-line::-webkit-scrollbar-thumb {
+      background-color: #007bff;
+      border-radius: 10px;
+    }
+
+    .servicios-grid.single-line .servicio {
+      flex: 0 0 auto;
+      width: 280px;
+      margin: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .servicios-grid.single-line .servicio:hover {
+      transform: translateY(-10px);
+    }
+    
+    /* Aseguramos que la última tarjeta no quede cortada en pantallas pequeñas */
+    .servicios-grid.single-line::after {
+      content: '';
+      flex: 0 0 20px;
+    }
+
+    /* Estilos para el botón de eliminar comentario */
+    .eliminar-comentario-form {
+      display: inline;
+      margin-left: 10px;
+    }
+
+    .btn-eliminar-comentario {
+      background: none;
+      border: none;
+      color: #ff4d4d;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0 5px;
+      transition: color 0.3s ease;
+    }
+
+    .btn-eliminar-comentario:hover {
+      color: #ff0000;
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div>
-      <h1>Cielo Digital</h1>
-      <nav>
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="logo">
+        <a href="#">Cielo Digital</a>
+      </div>
+      
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <nav class="main-menu" id="mainMenu">
         <ul>
-          <li>
-            <a href="#">Inicio</a>
-            <ul class="submenu">
-              <li><a href="#">Asesoría de drones</a></li>
-              <li><a href="#">Drones para Inmobiliarias</a></li>
-              <li><a href="#">Seguimiento de obras con drones</a></li>
-              <li><a href="#">Topografía con drones</a></li>
-              <li><a href="#">Fotogrametría con Dron</a></li>
-              <li><a href="#">Inspección con Drones</a></li>
-              <li><a href="#">Termografía Drones</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Catálogo</a>
-            <ul class="submenu">
-              <li><a href="#drone-1">DJI Mavic 3</a></li>
-              <li><a href="#drone-2">DJI Air 2S</a></li>
-              <li><a href="#drone-3">DJI FPV</a></li>
-              <li><a href="#drone-4">DJI Mini 2</a></li>
-              <li><a href="#drone-5">DJI Inspire 2</a></li>
-            </ul>
-          </li>
+          <li><a href="#servicios">Inicio</a></li>
+          <li><a href="#drones">Catálogo</a></li>
           <li><a href="#conocenos">Conocenos</a></li>
-          <li><a href="#">Reservas</a></li>
-          <li><a href="{{ url_for('login.login') }}">Iniciar Sesión</a></li>
+          <li><a href="{{ url_for('reservas.reservas') }}">Reservas</a></li>
+          <li><a href="#comentarios">Comentarios</a></li>
+          {% if session.username %}
+            <li><a href="{{ url_for('login.logout') }}">Cerrar Sesión</a></li>
+          {% else %}
+            <li><a href="{{ url_for('login.login') }}">Iniciar Sesión</a></li>
+          {% endif %}
         </ul>
       </nav>
+      
+      {% if session.username %}
+        <div id="userInfo">
+          <span>Bienvenido, {{ session.username }}</span>
+        </div>
+      {% endif %}
     </div>
-    <div id="userInfo"></div>
   </header>
   
   <!-- Sección del Banner con Carrusel de Fondo -->
   <section class="banner">
-    <div class="carousel">
-      <img src="/static/multimedia/imagenes carrusel/OIP.jpg" alt="Imagen 1" class="active">
-      <img src="/static/multimedia/imagenes carrusel/drone-montagne.jpg" alt="Imagen 2">
-      <img src="/static/multimedia/imagenes carrusel/dron-paisaje-mar-1620x800.jpg" alt="Imagen 3">
-    </div>
-    <div class="banner-content">
-      <h2>Descubre el dron perfecto para cada servicio</h2>
-      <p>Recreativo, profesional y más.</p>
-    </div>
-  </section>
-  
-  <!-- Sección de Drones -->
-  <section class="drones">
-    <h1>Lista de Drones</h1>
-    {% for dron in drones %}
-      <div class="dron" id="drone-{{ dron.id }}">
-        <img src="{{ dron.imagen_url }}" alt="{{ dron.modelo }}">
-        <h3>{{ dron.modelo }}</h3>
-        <p>{{ dron.descripcion }}</p>
-        <button onclick="reservarDrone({{ dron.id }})">Reservar</button>
+    <div class="video-banner">
+      <video autoplay muted loop id="banner-video">
+        <source src="static\multimedia\videos\invideo-ai-480 ¡Descubre el Futuro con Nuestros Drones! 2025-03-19.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+      <div class="banner-content">
+        <h2>Descubre el dron perfecto para cada servicio</h2>
+        <p>Recreativo, profesional y más.</p>
+        <a href="#drones" class="banner-btn">Ver drones</a>
       </div>
-    {% endfor %}
+    </div>
   </section>
   
-  <!-- Sección de Información Adicional -->
+  <!-- Sección de Drones - con el nuevo estilo de tarjetas -->
+  <section id="drones" class="drones">
+    <h2>Nuestros Drones</h2>
+    
+    <div class="servicios-grid single-line">
+      {% for dron in drones %}
+        <div class="servicio" id="drone-{{ dron.id }}">
+          <div class="servicio-header">
+            <div class="servicio-icon">
+              <img src="{{ dron.imagen_url }}" alt="{{ dron.modelo }}">
+            </div>
+          </div>
+          <div class="servicio-body">
+            <h3>{{ dron.modelo }}</h3>
+            <p>{{ dron.descripcion }}</p>
+            <div class="servicio-footer">
+              <button class="servicio-btn" onclick="reservarDrone({{ dron.id }})">Reservar</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  
+  <!-- Sección de Información Adicional modernizada -->
   <section class="info-droning" id="conocenos">
     <h2>"Droning, soluciones adaptadas"</h2>
     <p>
@@ -418,77 +1257,209 @@
     </p>
     <h2>Objetivos</h2>
     <div class="objetivos">
-      <div class="objetivo">
-        <h3>Eficacia <span class="logo"><img src="/static/multimedia/logos/Eficacia.png" alt="Logo Eficacia"></span></h3>
-        <p>
-          Prevenir y aportar soluciones innovadoras a posibles incidencias en todas las fases 
-          de los diferentes procesos dentro del entorno agrícola, civil, minero, energético 
-          y de la ingeniería en general.
-        </p>
+      <div class="objetivo" data-aos="fade-up" data-aos-delay="100">
+        <h3>
+          <span class="logo"><img src="/static/multimedia/logos/Eficacia.png" alt="Logo Eficacia"></span>
+          Eficacia
+        </h3>
+        <div class="content">
+          <p>Prevenir y aportar soluciones innovadoras a posibles incidencias en todas las fases de los diferentes procesos dentro del entorno agrícola, civil, minero, energético y de la ingeniería en general.</p>
+          <div class="content-extra" style="display: none;">
+            <p>Nuestro equipo de expertos trabaja de manera proactiva para identificar y resolver problemas antes de que afecten a las operaciones, garantizando la máxima eficiencia en cada proyecto.</p>
+          </div>
+        </div>
+        <button class="leer-mas">Leer más</button>
       </div>
-      <div class="objetivo">
-        <h3>Calidad <span class="logo"><img src="/static/multimedia/logos/Calidad.png" alt="Logo Calidad"></span></h3>
-        <p>
-          Mejora continua en técnicas de análisis, así como nuestra actitud de trabajo 
-          orientada a satisfacer las necesidades del cliente. Para nosotros, el mejor referente 
-          es la opinión de nuestros clientes.
-        </p>
+      
+      <div class="objetivo" data-aos="fade-up" data-aos-delay="200">
+        <h3>
+          <span class="logo"><img src="/static/multimedia/logos/Calidad.png" alt="Logo Calidad"></span>
+          Calidad
+        </h3>
+        <div class="content">
+          <p>Mejora continua en técnicas de análisis, así como nuestra actitud de trabajo 
+            orientada a satisfacer las necesidades del cliente.</p>
+          <div class="content-extra" style="display: none;">
+            <p>Para nosotros, el mejor referente 
+              es la opinión de nuestros clientes.</p>
+          </div>
+        </div>
+        <button class="leer-mas">Leer más</button>
       </div>
-      <div class="objetivo">
-        <h3>I+D+i <span class="logo"><img src="/static/multimedia/logos/I+D+i.png" alt="Logo I+D+i"></span></h3>
-        <p>
-          Inversión constante en I+D+i que nos permita crecer de la mano de todos los avances 
-          que se den en nuestros servicios.
-        </p>
+      
+      <div class="objetivo" data-aos="fade-up" data-aos-delay="300">
+        <h3>
+          <span class="logo"><img src="/static/multimedia/logos/I+D+i.png" alt="Logo I+D+i"></span>
+          I+D+i
+        </h3>
+        <div class="content">
+          <p>Inversión constante en I+D+i que nos permita crecer de la mano de todos los avances 
+            que se den en nuestros servicios.</p>
+          <div class="content-extra" style="display: none;">
+            <p>Inversión constante en I+D+i que nos permita crecer de la mano de todos los avances 
+              que se den en nuestros servicios.</p>
+          </div>
+        </div>
+        <button class="leer-mas">Leer más</button>
       </div>
     </div>
   </section>
   
   <!-- Apartado de Servicios -->
-  <section class="servicios">
-    <h2>Servicios</h2>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example1')">
-      <img class="servicio-icon" src="/static/multimedia/icons/asesoria.png" alt="Asesoría Icon">
-      <h3>Asesoría de drones</h3>
-      <p>Ofrecemos orientación profesional en la selección, uso y mantenimiento de drones para diversas aplicaciones.</p>
+  <section id="servicios" class="servicios">
+    <h2>Nuestros Servicios</h2>
+    
+    <div class="servicios-grid">
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/asesoria drones.png" alt="Asesoría Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Asesoría de drones</h3>
+          <p>Ofrecemos orientación profesional en la selección, uso y mantenimiento de drones para diversas aplicaciones.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/9-lWGo2hb_8?si=yHQ2YGMtOTAWTqx7')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/drones para inmobiliaras.png" alt="Inmobiliarias Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Drones para Inmobiliarias</h3>
+          <p>Nuestras soluciones especializadas para el sector inmobiliario incluyen imágenes aéreas de alta calidad para mostrar propiedades y terrenos.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/9-lWGo2hb_8?si=u85CfC97n9H_2K_0')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/seguimiento de obras.png" alt="Seguimiento Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Seguimiento de obras</h3>
+          <p>Utilizamos drones para monitorear el progreso de obras y proyectos de construcción, proporcionando informes visuales en tiempo real.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/eSVFph4RNLI?si=50xhWf8AuIFS5xFN')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/topografia con drones.png" alt="Topografía Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Topografía con drones</h3>
+          <p>Realizamos levantamientos topográficos aéreos para obtener datos precisos del terreno, facilitando la planificación y análisis de proyectos.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/BzmzqlUHms0?si=AT44A-EKfBfknNpi')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/fotogrametria con dron.png" alt="Fotogrametría Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Fotogrametría con Dron</h3>
+          <p>Empleamos la fotogrametría aérea para generar mapas y modelos 3D detallados, útiles en diversas aplicaciones.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/OJ2x5NqxQjQ?si=eZcXX3Hqn6PM2UZs')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/inspeccion con drones.png" alt="Inspección Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Inspección con Drones</h3>
+          <p>Nuestros drones permiten realizar inspecciones seguras y detalladas de infraestructuras y edificaciones, accediendo a zonas difíciles.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/rVYYuWZO-Hg?si=s7UlbW1GAlLHswYd')">Ver más</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="servicio">
+        <div class="servicio-header">
+          <div class="servicio-icon">
+            <img src="/static/multimedia/logos/termografia drones.png" alt="Termografía Icon">
+          </div>
+        </div>
+        <div class="servicio-body">
+          <h3>Termografía Drones</h3>
+          <p>Utilizamos tecnología termográfica para detectar diferencias de temperatura en edificaciones e instalaciones, facilitando diagnósticos precisos.</p>
+          <div class="servicio-footer">
+            <button class="servicio-btn" onclick="abrirModal('https://www.youtube.com/embed/O3ianZoZlWk?si=OJnUB7vPLRnHH6It')">Ver más</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example2')">
-      <img class="servicio-icon" src="/static/multimedia/icons/inmobiliarias.png" alt="Inmobiliarias Icon">
-      <h3>Drones para Inmobiliarias</h3>
-      <p>Nuestras soluciones especializadas para el sector inmobiliario incluyen imágenes aéreas de alta calidad para mostrar propiedades y terrenos.</p>
+  </section>
+  
+  <!-- Sección de Comentarios Modernizada -->
+  <section id="comentarios" class="comentarios">
+    <h2 class="comentarios-titulo">Comentarios de Clientes</h2>
+    <div id="listaComentarios" class="comentarios-lista">
+      {% if comentarios %}
+        {% for comentario in comentarios %}
+          <div class="comentario-item">
+            <p class="comentario-texto">
+              <strong class="comentario-usuario">{{ comentario.usuario.username }}</strong>: 
+              {{ comentario.texto }}
+              {% if session.username == 'admin' %}
+                <form method="POST" action="{{ url_for('comentarios.eliminar_comentario', comentario_id=comentario.id) }}" class="eliminar-comentario-form">
+                  <button type="submit" class="btn-eliminar-comentario" onclick="return confirm('¿Estás seguro de que deseas eliminar este comentario?')">
+                    <i class="fas fa-trash"></i> Eliminar
+                  </button>
+                </form>
+              {% endif %}
+            </p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="comentario-sin-comentarios">No hay comentarios aún. ¡Sé el primero en compartir tu experiencia!</p>
+      {% endif %}
     </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example3')">
-      <img class="servicio-icon" src="/static/multimedia/icons/seguimiento.png" alt="Seguimiento Icon">
-      <h3>Seguimiento de obras con drones</h3>
-      <p>Utilizamos drones para monitorear el progreso de obras y proyectos de construcción, proporcionando informes visuales en tiempo real.</p>
-    </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example4')">
-      <img class="servicio-icon" src="/static/multimedia/icons/topografia.png" alt="Topografía Icon">
-      <h3>Topografía con drones</h3>
-      <p>Realizamos levantamientos topográficos aéreos para obtener datos precisos del terreno, facilitando la planificación y análisis de proyectos.</p>
-    </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example5')">
-      <img class="servicio-icon" src="/static/multimedia/icons/fotogrametria.png" alt="Fotogrametría Icon">
-      <h3>Fotogrametría con Dron</h3>
-      <p>Empleamos la fotogrametría aérea para generar mapas y modelos 3D detallados, útiles en diversas aplicaciones.</p>
-    </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example6')">
-      <img class="servicio-icon" src="/static/multimedia/icons/inspeccion.png" alt="Inspección Icon">
-      <h3>Inspección con Drones</h3>
-      <p>Nuestros drones permiten realizar inspecciones seguras y detalladas de infraestructuras y edificaciones, accediendo a zonas difíciles.</p>
-    </div>
-    <div class="servicio" onclick="abrirModal('https://www.youtube.com/embed/example7')">
-      <img class="servicio-icon" src="/static/multimedia/icons/termografia.png" alt="Termografía Icon">
-      <h3>Termografía Drones</h3>
-      <p>Utilizamos tecnología termográfica para detectar diferencias de temperatura en edificaciones e instalaciones, facilitando diagnósticos precisos.</p>
-    </div>
+    {% if session.username %}
+      <form id="comentarioForm" class="comentario-form">
+        <textarea name="comentario" id="comentario" class="comentario-textarea" placeholder="Comparte tu experiencia con nuestros servicios..." required></textarea>
+        <button type="submit" class="comentario-boton">
+          <span>Enviar Comentario</span>
+        </button>
+      </form>
+    {% else %}
+      <p class="comentario-invitar-login">
+        <a href="{{ url_for('login.login') }}" class="comentario-link-login">Inicia sesión</a> para dejar un comentario.
+      </p>
+    {% endif %}
   </section>
   
   <!-- Modal para Video -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="cerrarModal()">&times;</span>
-      <iframe id="modalVideo" src="" frameborder="0" allowfullscreen></iframe>
+      <iframe id="modalVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
   
@@ -506,27 +1477,32 @@
         images[current].classList.remove("active");
         current = (current + 1) % images.length;
         images[current].classList.add("active");
-      }, 3000);
+      }, 5000);
     });
     
     // Función para simular la reserva de un dron
     function reservarDrone(droneId) {
       if (!usuarioLogueado()) {
         alert("Debes iniciar sesión para reservar un dron.");
-        window.location.href = "login.html";
+        window.location.href = "{{ url_for('login.login') }}";
         return;
       }
-      setTimeout(() => {
-        const exito = true;
-        if (exito) {
+      fetch("{{ url_for('reservas.reservar') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ drone_id: droneId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
           alert("¡Reserva exitosa!");
           const boton = document.querySelector(`#drone-${droneId} button`);
           boton.disabled = true;
           boton.innerText = "Reservado";
         } else {
-          alert("El dron ya ha sido reservado.");
+          alert(data.error || "El dron ya ha sido reservado.");
         }
-      }, 500);
+      });
     }
     
     function usuarioLogueado() {
@@ -547,12 +1523,250 @@
     function abrirModal(videoURL) {
       document.getElementById("modalVideo").src = videoURL;
       document.getElementById("modal").style.display = "block";
+      document.body.style.overflow = "hidden"; // Previene el scroll en la página
     }
     
     function cerrarModal() {
       document.getElementById("modal").style.display = "none";
-      document.getElementById("modalVideo").src = "";
+      document.getElementById("modalVideo").src = ""; // Detiene el video al cerrar
+      document.body.style.overflow = "auto"; // Restaura el scroll
     }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal");
+      if (event.target == modal) {
+        cerrarModal();
+      }
+    }
+  </script>
+  
+  {% if session.username %}
+  <script>
+    // Si Flask tiene un usuario en sesión, lo guardamos en sessionStorage
+    sessionStorage.setItem("usuario", JSON.stringify({ nombre: "{{ session.username }}" }));
+  </script>
+  {% else %}
+  <script>
+    // Si no hay usuario en sesión, eliminamos cualquier valor previo
+    sessionStorage.removeItem("usuario");
+  </script>
+  {% endif %}
+  
+  <script>
+    // Mostrar siempre el botón de "Cerrar sesión" si el usuario está logueado
+    document.addEventListener("DOMContentLoaded", function() {
+      const userInfo = document.getElementById("userInfo");
+      if (userInfo.innerText.trim() !== "") {
+        const logoutBtn = document.createElement("button");
+        logoutBtn.innerText = "Cerrar sesión";
+        logoutBtn.style.marginLeft = "10px";
+        logoutBtn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          sessionStorage.removeItem("usuario");
+          window.location.href = "{{ url_for('login.logout') }}";
+        });
+        userInfo.appendChild(logoutBtn);
+      }
+    });
+    
+    // Manejo del envío del formulario de comentarios
+    document.addEventListener("DOMContentLoaded", function() {
+      const comentarioForm = document.getElementById("comentarioForm");
+      if (comentarioForm) {
+        comentarioForm.addEventListener("submit", function(e) {
+          e.preventDefault();
+          const comentario = document.getElementById("comentario").value;
+          fetch("{{ url_for('comentarios.agregar_comentario') }}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ comentario: comentario })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert("Comentario enviado.");
+              location.reload();
+            } else {
+              alert(data.error || "Error al enviar comentario.");
+            }
+          });
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    // Animar la aparición de nuevos comentarios al enviar
+    document.addEventListener('DOMContentLoaded', function() {
+      const comentarioForm = document.getElementById('comentarioForm');
+      if (comentarioForm) {
+        comentarioForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const comentario = document.getElementById('comentario').value;
+          
+          // Muestra una animación mientras se envía
+          const boton = this.querySelector('.comentario-boton');
+          const textoOriginal = boton.innerHTML;
+          boton.innerHTML = '<span>Enviando...</span>';
+          boton.disabled = true;
+          
+          fetch("{{ url_for('comentarios.agregar_comentario') }}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ comentario: comentario })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              // Si el comentario se envió exitosamente
+              // Restaurar el botón
+              boton.innerHTML = '<span>¡Enviado!</span>';
+              setTimeout(() => {
+                boton.innerHTML = textoOriginal;
+                boton.disabled = false;
+                location.reload(); // Recargar para mostrar el nuevo comentario
+              }, 1500);
+            } else {
+              boton.innerHTML = textoOriginal;
+              boton.disabled = false;
+              alert(data.error || "Error al enviar comentario.");
+            }
+          })
+          .catch(error => {
+            boton.innerHTML = textoOriginal;
+            boton.disabled = false;
+            console.error('Error:', error);
+          });
+        });
+      }
+    });
+  </script>
+  
+  <!-- Script para el encabezado y menú -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carrusel mejorado
+      const images = document.querySelectorAll(".carousel img");
+      let current = 0;
+      
+      setInterval(() => {
+        images[current].classList.remove("active");
+        current = (current + 1) % images.length;
+        images[current].classList.add("active");
+      }, 5000); // Más tiempo para apreciar cada imagen
+      
+      // Efecto de scroll en el encabezado
+      const header = document.getElementById('mainHeader');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // Menú móvil
+      const menuToggle = document.getElementById('menuToggle');
+      const mainMenu = document.getElementById('mainMenu');
+      
+      if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+          mainMenu.classList.toggle('active');
+          // Animar las barras del menú
+          this.classList.toggle('active');
+        });
+      }
+      
+      // Cerrar menú al hacer clic en un enlace
+      const menuLinks = document.querySelectorAll('.main-menu ul li a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mainMenu.classList.remove('active');
+          menuToggle.classList.remove('active');
+        });
+      });
+    });
+  </script>
+  
+  <script>
+    // Añadir desplazamiento suave a los enlaces del menú
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuLinks = document.querySelectorAll('.main-menu a[href^="#"]');
+      
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            // Calcular una posición ligeramente más arriba para compensar el header fijo
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            
+            // Cerrar el menú móvil si está abierto
+            const mainMenu = document.getElementById('mainMenu');
+            const menuToggle = document.getElementById('menuToggle');
+            if (mainMenu.classList.contains('active')) {
+              mainMenu.classList.remove('active');
+              menuToggle.classList.remove('active');
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Asegúrate de que este script esté justo antes del cierre del body (</body>) -->
+  <script>
+  // Función para manejar el clic en los botones
+  function toggleReadMore() {
+      // Obtener todos los botones
+      var buttons = document.querySelectorAll('.leer-mas');
+      
+      // Añadir evento de clic a cada botón
+      for (var i = 0; i < buttons.length; i++) {
+          buttons[i].onclick = function() {
+              // Obtener el elemento padre (card)
+              var card = this.parentNode;
+              
+              // Buscar el contenido oculto
+              var hiddenContent = card.querySelector('.content-extra');
+              
+              // Si no existe, crear uno
+              if (!hiddenContent) {
+                  hiddenContent = document.createElement('div');
+                  hiddenContent.className = 'content-extra';
+                  hiddenContent.innerHTML = '<p>Contenido adicional que se mostrará al hacer clic en "Leer más".</p>';
+                  
+                  // Insertar antes del botón
+                  card.insertBefore(hiddenContent, this);
+              }
+              
+              // Alternar visibilidad
+              if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+                  hiddenContent.style.display = 'block';
+                  this.textContent = 'Leer menos';
+              } else {
+                  hiddenContent.style.display = 'none';
+                  this.textContent = 'Leer más';
+              }
+          };
+      }
+  }
+
+  // Ejecutar cuando el DOM esté completamente cargado
+  document.addEventListener('DOMContentLoaded', toggleReadMore);
+
+  // También ejecutar ahora por si el DOM ya está cargado
+  toggleReadMore();
   </script>
 </body>
 </html>
